@@ -12,6 +12,8 @@ public class CutoutObject : MonoBehaviour
 
     private Camera mainCamera;
 
+    private List<GameObject> wallsHit = new List<GameObject>();
+
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
@@ -19,21 +21,40 @@ public class CutoutObject : MonoBehaviour
 
     private void Update()
     {
-        Vector2 cutoutPos = mainCamera.WorldToViewportPoint(targetObject.position);
-        cutoutPos.y /= (Screen.width / Screen.height);
+        float characterDistance = Vector3.Distance(transform.position, targetObject.position);
 
-        Vector3 offset = targetObject.position - transform.position;
-        RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, wallMask);
-
-        foreach (RaycastHit hit in hitObjects)
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, targetObject.position - transform.position, characterDistance, wallMask);
+        if (hits.Length > 0)
         {
-            Material[] materials = hit.transform.GetComponent<Renderer>().materials;
-
-            for (int m = 0; m < materials.Length; m++)
+            foreach (RaycastHit hit in hits)
             {
-                materials[m].SetVector("_CutoutPos", cutoutPos);
-                materials[m].SetFloat("_CutoutSize", 0.1f);
-                materials[m].SetFloat("_FalloffSize", 0.05f);
+                wallsHit.Add(hit.transform.gameObject);
+
+                Material[] materials = hit.transform.GetComponent<Renderer>().materials;
+
+                for (int m = 0; m < materials.Length; m++)
+                {
+                    materials[m].SetFloat("_Opacity", 3.0f);
+                    materials[m].SetInt("_AllowEmission", 1);
+                }
+            }
+        }
+        else
+        {
+            if (wallsHit != null)
+            {
+                foreach (GameObject wall in wallsHit)
+                {
+                    Material[] materials = wall.GetComponent<Renderer>().materials;
+
+                    for (int m = 0; m < materials.Length; m++)
+                    {
+                        materials[m].SetFloat("_Opacity", 100.0f);
+                        materials[m].SetInt("_AllowEmission", 0);
+                    }
+                }
+
+                wallsHit = new List<GameObject>();
             }
         }
     }

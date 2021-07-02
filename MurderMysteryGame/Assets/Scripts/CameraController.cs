@@ -40,28 +40,28 @@ public class CameraController : MonoBehaviour
         // Follows player
         camRig.position = m_targetObject.position;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             newCamRot *= Quaternion.Euler(Vector3.up * 90.0f);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             newCamRot *= Quaternion.Euler( Vector3.up * -90.0f);
         }
 
-        camRig.rotation = Quaternion.Lerp(camRig.rotation, newCamRot, Time.deltaTime * 15.0f);
+        camRig.rotation = Quaternion.Lerp(camRig.rotation, newCamRot, Time.deltaTime * 12.0f);
 
-        if (Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.KeypadPlus))
-        {
-            newCamZoom += m_zoomAmount;
-        }
+        //if (Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.KeypadPlus))
+        //{
+        //    newCamZoom += m_zoomAmount;
+        //}
 
-        if (Input.GetKey(KeyCode.Minus) || Input.GetKey(KeyCode.KeypadMinus))
-        {
-            newCamZoom -= m_zoomAmount;
-        }
+        //if (Input.GetKey(KeyCode.Minus) || Input.GetKey(KeyCode.KeypadMinus))
+        //{
+        //    newCamZoom -= m_zoomAmount;
+        //}
 
-        mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, newCamZoom, Time.deltaTime * 15.0f);
+        //mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, newCamZoom, Time.deltaTime * 15.0f);
     }
 }
