@@ -450,10 +450,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1801434955}
   - component: {fileID: 1801434954}
-  - component: {fileID: 1801434953}
   - component: {fileID: 1801434956}
-  - component: {fileID: 1801434958}
-  - component: {fileID: 1801434957}
+  - component: {fileID: 1801434953}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -461,14 +459,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1801434953
-AudioListener:
+--- !u!114 &1801434953
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801434952}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7f9ecec8e4b024f83f778b9c4b1726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetObject: {fileID: 1877053379}
+  m_canMove: 1
 --- !u!20 &1801434954
 Camera:
   m_ObjectHideFlags: 0
@@ -558,62 +562,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1801434957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801434952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d6317dfeb8e0346899365292e775f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObject: {fileID: 1877053379}
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &1801434958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801434952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be76e5f14cfee674cb30b491fb72b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boost: 3.5
-  positionLerpTime: 0.2
-  mouseSensitivityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 0
-      outSlope: 5
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 2.5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  rotationLerpTime: 0.01
-  invertY: 0
 --- !u!1 &1877053375
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +575,7 @@ GameObject:
   - component: {fileID: 1877053377}
   - component: {fileID: 1877053376}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +709,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5212f56f61132949b80d8b83b99aff9, type: 2}
+  - {fileID: 2100000, guid: efc0304b4e7002b43b297a83d8b1a645, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
